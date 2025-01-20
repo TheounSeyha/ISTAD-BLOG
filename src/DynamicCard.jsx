@@ -1,5 +1,5 @@
-import Card from "./Card";
-import posts from "./posts"; // Import the posts array
+import Card from "../Card";
+import posts from "./data"; // Import the posts array
 function DynamicCard() {
   return (
     <div className="bg-gray-100 p-8">
