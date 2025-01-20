@@ -20,7 +20,7 @@ export default function Nav_bar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const toggleSearchDropdown = () => {
-    setIsSearchDropdownOpen(!isSearchDropdownOpen); // Toggle search dropdown
+    setIsSearchDropdownOpen(!isSearchDropdownOpen);
   };
 
   return (
@@ -227,7 +227,7 @@ export default function Nav_bar() {
                 </li>
                 <li>
                   <NavLink
-                    to=""
+                    to="/account"
                     className="bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067] flex items-center gap-2"
                   >
                     Sign Up
