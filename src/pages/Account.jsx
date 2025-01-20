@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import PostCard from "./Components/Postcard/Postcard";
+
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
