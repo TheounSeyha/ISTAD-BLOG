@@ -1,7 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import PostCard from "../Components/Postcard/Postcard";
+<<<<<<< HEAD
 import { NavLink } from "react-router";
 import { UserProfile } from "../services/profile";
+=======
+import { NavLink } from "react-router-dom";
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -10,6 +14,10 @@ function Account() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
+=======
+  const [token, setToken] = useState(null);
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
 
   const dropdownRef = useRef(null);
 
@@ -50,6 +58,7 @@ function Account() {
       document.body.style.overflow = "auto";
     };
   }, [sidebarVisible]);
+<<<<<<< HEAD
   useEffect(() => {
     const getProfile = async () => {
       try {
@@ -58,13 +67,57 @@ function Account() {
         setLoading(false);
       } catch (error) {
         setError(error.message);
+=======
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
+        // First, get the token from localStorage
+        const storedToken = localStorage.getItem('authToken');
+        console.log('Stored token:', storedToken);
+        
+        if (!storedToken) {
+          throw new Error('No authentication token found');
+        }
+
+        setToken(storedToken);
+
+        // Use the token to fetch the profile
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${storedToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile');
+        }
+
+        const data = await response.json();
+        console.log('Profile data:', data);
+        setProfile(data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error:', err);
+        setError(err.message);
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
         setLoading(false);
       }
     };
 
+<<<<<<< HEAD
     getProfile();
   }, []);
   
+=======
+    fetchProfile();
+  }, []);
+
+  // Rest of your component remains the same
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
   return (
     <>
       <div className="bg-white shadow-md p-4 flex items-center justify-between">
@@ -73,7 +126,6 @@ function Account() {
             onClick={toggleSidebar}
             className="text-gray-600 focus:outline-none"
           >
-            {/* Hamburger icon */}
             <svg
               className="w-6 h-6"
               fill="none"
@@ -123,8 +175,8 @@ function Account() {
                   <p className="text-red-500">Error: {error}</p>
                 ) : profile ? (
                   <>
-                    <h3 className="text-lg font-semibold">{profile.username}</h3>
-                    <p className="text-sm text-gray-500">{profile.email}</p>
+                    <h3 className="text-lg font-semibold">{profile.profile.username}</h3>
+                    <p className="text-sm text-gray-500">{profile.profile.email}</p>
                   </>
                 ) : (
                   <p>No profile data available</p>
@@ -133,7 +185,7 @@ function Account() {
             </div>
             <button className="w-full">
               <NavLink
-                href="#"
+                to="#"
                 className="flex items-center justify-center bg-[#BF9DFF] px-4 py-2 rounded-lg space-x-2 text-white hover:bg-[#FF5983]"
               >
                 <svg
@@ -236,15 +288,15 @@ function Account() {
                   className="flex items-center bg-[#BF9DFF] px-4 py-2 rounded-lg space-x-2 text-white hover:bg-[#FF5983]"
                 >
                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      width="18"
-                      height="18"
-                      fill="currentColor"
-                      style={{ color: "white" }}
-                    >
-                      <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
-                    </svg>
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                    style={{ color: "white" }}
+                  >
+                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+                  </svg>
                   <span>Log out</span>
                 </NavLink>
               </button>

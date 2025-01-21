@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { BASE_URL } from "../services/api";
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
 
 
 const LoginForm = () => {
@@ -30,7 +34,7 @@ const LoginForm = () => {
 
     try {
       // Send the data to the API
-      const response = await fetch(`${BASE_URL}/login`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,12 +46,19 @@ const LoginForm = () => {
         throw new Error("Login failed");
       }
       
+<<<<<<< HEAD
       const data = await response.json();
       console.log("Login successful:", data);
       const token = data.token;
       localStorage.setItem('authToken', token);
       console.log('Login successful, token stored:', token);
       window.location.href = '/account';
+=======
+      const result = await response.json();
+      console.log("Login successful:", result);
+      localStorage.setItem('authToken', result.access_token);
+      navigate('/account');
+>>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
       
       // Handle successful login (e.g., redirect or store token)
     } catch (error) {
