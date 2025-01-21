@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PostCard from "../Components/Postcard/Postcard";
-<<<<<<< HEAD
 import { NavLink } from "react-router";
 import { UserProfile } from "../services/profile";
-=======
-import { NavLink } from "react-router-dom";
->>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -14,10 +10,7 @@ function Account() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-<<<<<<< HEAD
-=======
   const [token, setToken] = useState(null);
->>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
 
   const dropdownRef = useRef(null);
 
@@ -58,7 +51,6 @@ function Account() {
       document.body.style.overflow = "auto";
     };
   }, [sidebarVisible]);
-<<<<<<< HEAD
   useEffect(() => {
     const getProfile = async () => {
       try {
@@ -67,57 +59,13 @@ function Account() {
         setLoading(false);
       } catch (error) {
         setError(error.message);
-=======
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        setLoading(true);
-        // First, get the token from localStorage
-        const storedToken = localStorage.getItem('authToken');
-        console.log('Stored token:', storedToken);
-        
-        if (!storedToken) {
-          throw new Error('No authentication token found');
-        }
-
-        setToken(storedToken);
-
-        // Use the token to fetch the profile
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storedToken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch profile');
-        }
-
-        const data = await response.json();
-        console.log('Profile data:', data);
-        setProfile(data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error:', err);
-        setError(err.message);
->>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
         setLoading(false);
       }
     };
 
-<<<<<<< HEAD
     getProfile();
   }, []);
   
-=======
-    fetchProfile();
-  }, []);
-
-  // Rest of your component remains the same
->>>>>>> e9ef6341792ce13cf436ab6289e2a6368407d674
   return (
     <>
       <div className="bg-white shadow-md p-4 flex items-center justify-between">

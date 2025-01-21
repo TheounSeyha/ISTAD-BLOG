@@ -24,12 +24,16 @@ export default function Nav_bar() {
   };
 
   return (
-      <>
-        <section className="w-full bg-white py-4 px-12 shadow-md">
+    <>
+      <section className="w-full bg-white py-4 px-12 shadow-md">
         <div className="grid grid-cols-2 lg:flex items-center justify-between">
           <div className="flex items-center space-x-2 lg:w-1/6">
             <NavLink to="/" className="flex items-center space-x-2">
-              <img src="/Logo/Post-Pen-Logo.png" alt="PostPen Logo" className="w-8 h-8" />
+              <img
+                src="/Logo/Post-Pen-Logo.png"
+                alt="PostPen Logo"
+                className="w-8 h-8"
+              />
               <h3 className="text-2xl font-medium">PostPen</h3>
             </NavLink>
           </div>
@@ -45,32 +49,37 @@ export default function Nav_bar() {
             <ul className="hidden lg:flex justify-between items-center">
               <div className="flex gap-10">
                 <li>
-                  <NavLink to="/about" className={({ isActive }) => (isActive ? "text-[#FF9067]" : "hover:text-[#FF9067]")}>
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      isActive ? "text-[#FF9067]" : "hover:text-[#FF9067]"
+                    }
+                  >
                     About
                   </NavLink>
                 </li>
 
                 <li className="relative">
-                <NavLink
-                  onClick={toggleEducationDropdown}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "flex items-center gap-2 hover:text-[#FF9067]"
-                      : ""
-                  }
-                >
+                  <NavLink
+                    onClick={toggleEducationDropdown}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center gap-2 hover:text-[#FF9067]"
+                        : ""
+                    }
+                  >
                     Education
                     <span>
                       <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 320 512"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      style={{ color: "black" }}
-                    >
-                      <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-                    </svg>
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        style={{ color: "black" }}
+                      >
+                        <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                      </svg>
                     </span>
                   </NavLink>
                   {isEducationDropdownOpen && (
@@ -116,14 +125,14 @@ export default function Nav_bar() {
                 </li>
 
                 <li className="relative">
-                <NavLink
-                  onClick={toggleTechnologyDropdown}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "flex items-center gap-2 hover:text-[#FF9067]"
-                      : ""
-                  }
-                >
+                  <NavLink
+                    onClick={toggleTechnologyDropdown}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center gap-2 hover:text-[#FF9067]"
+                        : ""
+                    }
+                  >
                     Technology
                     <span>
                       <svg
@@ -182,8 +191,11 @@ export default function Nav_bar() {
               </div>
 
               <div className="flex items-center gap-4">
-              <li className="relative">
-                  <button className="hover:text-[#FF9067]" onClick={toggleSearchDropdown}>
+                <li className="relative">
+                  <button
+                    className="hover:text-[#FF9067]"
+                    onClick={toggleSearchDropdown}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
@@ -380,30 +392,34 @@ export default function Nav_bar() {
                   )}
                 </li>
                 <li>
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#FF9067]"
-                    />
-                    <button className="mt-2 bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067]">
-                      Search
-                    </button>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#FF9067]"
+                  />
+                  <button className="mt-2 bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067]">
+                    Search
+                  </button>
                 </li>
                 <li>
-                  <NavLink
-                    to="/login"
-                  >
+                  <NavLink to={isLoggedIn ? "/profile" : "/login"}>
                     <button className="flex items-center justify-center mt-2 w-full bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067] gap-2">
-                      Sign Up
+                      {isLoggedIn ? "User Profile" : "Sign Up"}
                       <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      width="18"
-                      height="18"
-                      fill="currentColor"
-                      style={{ color: "white" }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        width="18"
+                        height="18"
+                        fill="currentColor"
+                        style={{ color: "white" }}
                       >
-                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+                        <path
+                          d={
+                            isLoggedIn
+                              ? "M224 256a64 64 0 11128 0 64 64 0 11-128 0zm0 112c-46.9 0-137.3 23.9-160 71.6C60.3 464 66.6 480 80 480h352c13.4 0 19.7-16 16-40.4-22.7-47.7-113.1-71.6-160-71.6z"
+                              : "M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+                          }
+                        />
                       </svg>
                     </button>
                   </NavLink>
@@ -412,7 +428,7 @@ export default function Nav_bar() {
             )}
           </nav>
         </div>
-        </section>
-      </>
+      </section>
+    </>
   );
 }
