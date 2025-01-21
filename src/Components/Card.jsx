@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BASE_URL } from "../services/api";
 
 const DataFetchingComponent = () => {
   const [data, setData] = useState([]);
@@ -8,7 +9,7 @@ const DataFetchingComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://blog-api.devnerd.store/blogs`);
+        const response = await fetch(`${BASE_URL}/blogs`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -49,7 +50,7 @@ const DataFetchingComponent = () => {
       {data.map((item) => (
         <div
           key={item.id}
-          className="rounded-lg shadow-md p-4 hover:shadow-lg transition-transform transform hover:scale-105 border border-gray-200 "
+          className="rounded-lg shadow-md p-4 hover:shadow-lg transition-transform transform hover:scale-100 border border-gray-200 "
         >
           {/* Header with profile image and username */}
           <div className="flex items-center mb-4 ">
@@ -59,11 +60,17 @@ const DataFetchingComponent = () => {
               className="w-12 h-12 rounded-full mr-4"
             />
             <div>
-              <span className="text-sm font-semibold text-gray-800 px-4">
+              <span className="text-sm font-semibold text-gray-800 px-2">
                 {item.author.username}
               </span>
-              
             </div>
+          </div>
+          <div>
+            <img
+              src={item.tumtail || "/image/user.png"}
+              alt={item.author.username}
+              className="  mr-4"
+            />
           </div>
 
           {/* Blog Title */}
@@ -104,8 +111,8 @@ const DataFetchingComponent = () => {
 
             {/* Buttons */}
             <div>
-              <button className="bg-blue-500  text-blue-400 text-sm px-6 py-2 rounded-lg shadow-md transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold">
-                Read More
+              <button className="bg-blue-500  text-white text-sm px-6 py-2 rounded-lg shadow-md transition-all duration-300 transform  hover:shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold">
+                Read more
               </button>
             </div>
           </div>
