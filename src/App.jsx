@@ -1,29 +1,37 @@
-// import DynamicCard from "./DynamicCard";
-import "./App.css";
-// import Slider from "./SliderHomePage";
-import DataFetchingComponent from "./Components/Card";
+import { useEffect, useState } from "react";
 
-import Slider from "./SliderHomePage";
+function App() {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-
-// import LoginForm from "./pages/Login";
-// import RegisterForm from "./pages/RegisterForm";
-
-
-const App = () => {
+  useEffect(() => {
+    async function fetchAllProducts() {
+      setIsLoading(true);
+      const response = await getAllProducts();
+      setProducts(response?.products);
+      setIsLoading(false);
+    }
+    fetchAllProducts();
+  }, []);
   return (
-    <main>
-
-      < Slider />
-      <DataFetchingComponent />
-     
-
-      {/* <DataFetchingComponent /> */}
-      {/* <LoginForm /> */}
-      {/* <RegisterForm /> */}
-      
-    </main>
+    <section className="max-w-screen-xl mx-auto">
+      {/* product card */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {isLoading && <p>loading...</p>}
+        {!isLoading &&
+          products.map((product, index) => (
+            <CardProduct
+              key={index}
+              thumbnail={product.thumbnail}
+              title={product.title}
+              desc={product.description}
+              price={product.price}
+              id={product.id}
+            />
+          ))}
+      </div>
+    </section>
   );
-};
+}
 
 export default App;
