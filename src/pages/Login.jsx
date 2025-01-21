@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BASE_URL } from "../services/api";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -32,7 +31,7 @@ const LoginForm = () => {
 
     try {
       // Send the data to the API
-      const response = await fetch(`${BASE_URL}/login`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

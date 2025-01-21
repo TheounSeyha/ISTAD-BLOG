@@ -54,7 +54,7 @@ function Account() {
 
   useEffect(() => {
     // Replace 'your-api-endpoint' with the actual URL
-    fetch('http://localhost:8080/users/profile', {
+    fetch(`${import.meta.env.VITE_BASE_URL}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

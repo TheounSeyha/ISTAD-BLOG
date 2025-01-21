@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../services/api";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +52,7 @@ const RegisterForm = () => {
         bio: formData.bio, // Include bio (null)
       };
 
-      const response = await fetch(`${BASE_URL}/register`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
