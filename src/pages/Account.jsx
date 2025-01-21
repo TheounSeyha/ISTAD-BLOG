@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+<<<<<<< HEAD:src/Account.jsx
 import PostCard from "./Components/Postcard/Postcard";
 import { NavLink } from "react-router";
+=======
+
+>>>>>>> dec2b995e318c2f65dde29f70ea2bcc47611ca3d:src/pages/Account.jsx
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
