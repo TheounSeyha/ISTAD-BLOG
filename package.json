@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "node index.js",
+    "build": "webpack",
+    "dev": "vite"
   },
   "dependencies": {
     "react": "^18.3.1",
