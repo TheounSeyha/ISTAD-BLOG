@@ -83,24 +83,10 @@ const RegisterForm = () => {
   };
 
   return (
-    <>
-      <div className="mx-12 mt-8">
-        <NavLink to="/login">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"
-            width="18"
-            height="18"
-            fill="currentColor"
-            style={{ color: "gray" }}
-          >
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-          </svg>
-        </NavLink>
-      </div>
-      <div className="flex items-center justify-center">
-        <img className="w-2/5 self-start" src="./loginpage/image.png" alt="" />
-        <form className="w-2/4 px-12 self-start py-8" onSubmit={handleSubmit}>
+    <div className="min-h-screen dark:bg-slate-800 dark:text-white">
+      <div className="block md:flex items-center justify-center dark:bg-slate-800 dark:text-white min-h-screen">
+        <img className="md:w-2/5 self-center" src="./loginpage/image.png" alt="" />
+        <form className="md:w-2/4 px-12 self-center py-8" onSubmit={handleSubmit}>
           {error && <div className="mb-5 text-red-500 text-sm">{error}</div>}
           <h3 className="text-2xl text-center mb-2 font-semibold">Register</h3>
           <p className="my-4 font-medium">Please fill out your information.</p>
@@ -183,7 +169,7 @@ const RegisterForm = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

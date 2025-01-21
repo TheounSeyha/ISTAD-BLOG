@@ -1,7 +1,7 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import PostCard from "../Components/Postcard/Postcard";
-import { NavLink } from "react-router";
-import { UserProfile } from "../services/profile";
+import { NavLink } from "react-router-dom";
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -51,21 +51,49 @@ function Account() {
       document.body.style.overflow = "auto";
     };
   }, [sidebarVisible]);
+
   useEffect(() => {
-    const getProfile = async () => {
+    const fetchProfile = async () => {
       try {
-        const data = await UserProfile();
+        setLoading(true);
+        // First, get the token from localStorage
+        const storedToken = localStorage.getItem('authToken');
+        console.log('Stored token:', storedToken);
+        
+        if (!storedToken) {
+          throw new Error('No authentication token found');
+        }
+
+        setToken(storedToken);
+
+        // Use the token to fetch the profile
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${storedToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile');
+        }
+
+        const data = await response.json();
+        console.log('Profile data:', data);
         setProfile(data);
         setLoading(false);
-      } catch (error) {
-        setError(error.message);
+      } catch (err) {
+        console.error('Error:', err);
+        setError(err.message);
         setLoading(false);
       }
     };
 
-    getProfile();
+    fetchProfile();
   }, []);
-  
+
+  // Rest of your component remains the same
   return (
     <>
       <div className="bg-white shadow-md p-4 flex items-center justify-between">
@@ -103,7 +131,6 @@ function Account() {
           className="w-2/5 flex items-center space-x-4 mx-auto px-4 py-2 bg-[#F0F0F0] rounded-xl focus:border-[#ff7f50] focus:ring-2 focus:ring-[#ff7f50] focus:outline-none"
         />
       </div>
-
       <div className="flex w-full h-screen">
         {/* Sidebar */}
         <div
@@ -251,7 +278,6 @@ function Account() {
             </ul>
           </nav>
         </div>
-
         {/* Content Area */}
         <div
           className={`flex-1 py-4 px-[100px] space-y-4 ${
