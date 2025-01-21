@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PostCard from "../Components/Postcard/Postcard";
 import { NavLink } from "react-router";
+import { UserProfile } from "../services/profile";
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -8,8 +9,7 @@ function Account() {
   const [manageIconsVisible, setManageIconsVisible] = useState(false);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
-  const [token, setToken] = useState(null);
+  const [error, setError] = useState(null);
 
   const dropdownRef = useRef(null);
 
@@ -50,41 +50,20 @@ function Account() {
       document.body.style.overflow = "auto";
     };
   }, [sidebarVisible]);
-
-
   useEffect(() => {
-    // Replace 'your-api-endpoint' with the actual URL
-    fetch('http://localhost:8080/users/profile', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.token) {
-          setToken(data.token);
-          console.log('Token retrieved:', data.token);
-          // You can store the token in localStorage or sessionStorage if needed
-          localStorage.setItem('authToken', data.token);
-        } else {
-          throw new Error('No token found');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching token:', error);
+    const getProfile = async () => {
+      try {
+        const data = await UserProfile();
+        setProfile(data);
+        setLoading(false);
+      } catch (error) {
         setError(error.message);
-      });
+        setLoading(false);
+      }
+    };
+
+    getProfile();
   }, []);
-
-
-
-  
   
   return (
     <>

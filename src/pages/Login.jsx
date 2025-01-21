@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../services/api";
-import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   // State to manage form inputs
   const [formData, setFormData] = useState({
     username: "",
@@ -44,9 +42,12 @@ const LoginForm = () => {
         throw new Error("Login failed");
       }
       
-      const result = await response.json();
-      console.log("Login successful:", result);
-      navigate('/account');
+      const data = await response.json();
+      console.log("Login successful:", data);
+      const token = data.token;
+      localStorage.setItem('authToken', token);
+      console.log('Login successful, token stored:', token);
+      window.location.href = '/account';
       
       // Handle successful login (e.g., redirect or store token)
     } catch (error) {
