@@ -45,6 +45,7 @@ const LoginForm = () => {
       
       const result = await response.json();
       console.log("Login successful:", result);
+      localStorage.setItem('authToken', result.access_token);
       navigate('/account');
       
       // Handle successful login (e.g., redirect or store token)

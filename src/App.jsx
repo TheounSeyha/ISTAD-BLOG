@@ -3,10 +3,7 @@ import RegisterForm from "./pages/RegisterForm";
 
 const App = () => {
   return (
-    <main>
-      
-      <RegisterForm />
-      
+    <main> 
     </main>
   );
 };
