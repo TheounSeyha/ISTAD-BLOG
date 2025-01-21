@@ -227,7 +227,7 @@ export default function Nav_bar() {
                 </li>
                 <li>
                   <NavLink
-                    to="/account"
+                    to="/login"
                     className="bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067] flex items-center gap-2"
                   >
                     Sign Up
@@ -391,7 +391,7 @@ export default function Nav_bar() {
                 </li>
                 <li>
                   <NavLink
-                    to=""
+                    to="/login"
                   >
                     <button className="flex items-center justify-center mt-2 w-full bg-[#ff7f50] text-white px-4 py-2 rounded hover:bg-[#FF9067] gap-2">
                       Sign Up
