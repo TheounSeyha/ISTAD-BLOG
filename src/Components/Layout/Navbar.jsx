@@ -25,7 +25,7 @@ export default function Nav_bar() {
 
   return (
       <>
-        <section className="w-full bg-white py-4 px-12 shadow-md">
+        <section className="w-full bg-white py-4 px-12 shadow-md ">
         <div className="grid grid-cols-2 lg:flex items-center justify-between">
           <div className="flex items-center space-x-2 lg:w-1/6">
             <NavLink to="/" className="flex items-center space-x-2">
@@ -55,7 +55,7 @@ export default function Nav_bar() {
                   onClick={toggleEducationDropdown}
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center gap-2 hover:text-[#FF9067]"
+                    ? "flex items-center gap-2 hover:text-[#FF9067] "
                       : ""
                   }
                 >
@@ -74,11 +74,11 @@ export default function Nav_bar() {
                     </span>
                   </NavLink>
                   {isEducationDropdownOpen && (
-                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-200 rounded shadow-lg">
+                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-200 rounded shadow-lg z-50">
                       <li>
                         <NavLink
                           to=""
-                          className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-[#F0EFEF]"
+                          className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-[#F0EFEF] " 
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export default function Nav_bar() {
                       <li>
                         <NavLink
                           to=""
-                          className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-[#F0EFEF]"
+                          className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-[#F0EFEF] "
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

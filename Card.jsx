@@ -29,34 +29,40 @@ const DataFetchingComponent = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center text-gray-600">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen text-gray-600 text-lg">
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className="text-center text-red-600 font-bold">Error: {error}</div>
+      <div className="flex items-center justify-center h-screen text-red-600 font-bold text-lg">
+        Error: {error}
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-wrap justify-center gap-6 p-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {data.map((item) => (
         <div
           key={item.id}
-          className="w-80 bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow transform hover:-translate-y-2"
+          className="rounded-lg shadow-md p-4 hover:shadow-lg transition-transform transform hover:scale-105 border border-gray-200 "
         >
           {/* Header with profile image and username */}
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 ">
             <img
-              src={item.author.profileImage || "/default-profile.png"}
+              src={item.author.profileImage || "/image/user.png"}
               alt={item.author.username}
-              className="w-12 h-12 rounded-full mr-3"
+              className="w-12 h-12 rounded-full mr-4"
             />
             <div>
-              <span className="text-sm font-semibold text-gray-800">
+              <span className="text-sm font-semibold text-gray-800 px-4">
                 {item.author.username}
               </span>
-              <p className="text-xs text-gray-500">Author</p>
+              
             </div>
           </div>
 
@@ -71,11 +77,11 @@ const DataFetchingComponent = () => {
           </p>
 
           {/* Hashtags */}
-          <div className="text-sm text-blue-500 mb-4">
+          <div className="flex flex-wrap gap-2 text-sm text-blue-500 mb-4">
             {item.categories.map((category) => (
               <span
                 key={category.name}
-                className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded-full mr-2"
+                className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded-full"
               >
                 #{category.name}
               </span>
@@ -97,12 +103,9 @@ const DataFetchingComponent = () => {
             </div>
 
             {/* Buttons */}
-            <div className="space-x-2">
-              <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded-lg hover:bg-blue-600">
+            <div>
+              <button className="bg-blue-500  text-blue-400 text-sm px-6 py-2 rounded-lg shadow-md transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold">
                 Read More
-              </button>
-              <button className="bg-gray-200 text-sm px-3 py-1 rounded-lg hover:bg-gray-300">
-                Edit
               </button>
             </div>
           </div>
