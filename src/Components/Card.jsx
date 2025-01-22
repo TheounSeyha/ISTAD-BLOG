@@ -1,125 +1,108 @@
-import { useState, useEffect } from "react";
-import { BASE_URL } from "../services/api";
+import { useState } from "react"; // Import useState for state management
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-const DataFetchingComponent = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function CardProduct({
+  title,
+  content,
+  author,
+  profileImage,
+  categories,
+  tumtail,
+  id,
+}) {
+  // State to track whether the blog is liked
+  const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/blogs`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const result = await response.json();
-        if (Array.isArray(result.blogs)) {
-          setData(result.blogs);
-        } else {
-          setError("Data is not in expected array format");
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen text-gray-600 text-lg">
-        Loading...
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen text-red-600 font-bold text-lg">
-        Error: {error}
-      </div>
-    );
-  }
+  // Toggle the like state
+  const handleLikeClick = () => {
+    setIsLiked((prevState) => !prevState);
+  };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-      {data.map((item) => (
-        <div
-          key={item.id}
-          className="rounded-lg shadow-md p-4 hover:shadow-lg transition-transform transform hover:scale-100 border border-gray-200 "
-        >
-          {/* Header with profile image and username */}
-          <div className="flex items-center mb-4 ">
-            <img
-              src={item.author.profileImage || "/image/user.png"}
-              alt={item.author.username}
-              className="w-12 h-12 rounded-full mr-4"
-            />
-            <div>
-              <span className="text-sm font-semibold text-gray-800 px-2">
-                {item.author.username}
-              </span>
-            </div>
-          </div>
-          <div>
-            <img
-              src={item.tumtail || "/image/user.png"}
-              alt={item.author.username}
-              className="  mr-4"
-            />
-          </div>
+    <div className="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+      {/* Blog Image */}
+      <img
+        src={
+          tumtail ||
+          "https://images.unsplash.com/photo-1628202926206-c63a34b1618f?q=80&w=2574&auto=format&fit=crop"
+        }
+        alt={title || "Blog post image"}
+        className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72 rounded-t-lg"
+      />
 
-          {/* Blog Title */}
-          <h2 className="text-lg font-bold text-gray-900 mb-2 truncate">
-            {item.title}
-          </h2>
-
-          {/* Blog Content */}
-          <p className="text-sm text-gray-700 mb-4 line-clamp-3">
-            {item.content}
-          </p>
-
-          {/* Hashtags */}
-          <div className="flex flex-wrap gap-2 text-sm text-blue-500 mb-4">
-            {item.categories.map((category) => (
-              <span
-                key={category.name}
-                className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded-full"
-              >
-                #{category.name}
-              </span>
-            ))}
-          </div>
-
-          {/* Footer with buttons */}
-          <div className="flex justify-between items-center">
-            {/* Likes and Comments */}
-            <div className="flex space-x-4 text-sm text-gray-600">
-              <div className="flex items-center space-x-1">
-                <span className="text-red-500">❤️</span>
-                <span>{Math.floor(Math.random() * 5000)}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <span className="text-gray-500">💬</span>
-                <span>{Math.floor(Math.random() * 500)}</span>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div>
-              <button className="bg-blue-500  text-white text-sm px-6 py-2 rounded-lg shadow-md transition-all duration-300 transform  hover:shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold">
-                Read more
-              </button>
-            </div>
-          </div>
+      {/* Content Section */}
+      <div className="relative border border-gray-100 bg-white p-6">
+        {/* Author and Profile */}
+        <div className="flex items-center mb-4">
+          <img
+            src={profileImage || "/image/user.png"}
+            alt={author || "Author"}
+            className="w-8 h-8 rounded-full mr-4"
+          />
+          <span className="text-sm font-semibold text-gray-800">
+            {author || "Unknown Author"}
+          </span>
         </div>
-      ))}
+
+        {/* Blog Title */}
+        <h3 className="mt-1.5 text-lg font-medium text-gray-900 line-clamp-1">
+          {title || "Default Blog Title"}
+        </h3>
+
+        {/* Blog Description */}
+        <p className="mt-1.5 line-clamp-3 text-gray-700">
+          {content || "Default blog content description"}
+        </p>
+
+        {/* Categories Section */}
+        <div className="flex flex-wrap gap-2 text-sm text-blue-500 mb-4">
+          {categories?.map((category) => (
+            <span
+              key={category.name}
+              className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded-full"
+            >
+              #{category.name}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer with "Read More" and "Like" button */}
+        <div className="flex justify-between items-center mt-4">
+          {/* Read More Button */}
+          <Link
+            to={`/blog/${id}`} // Use Link for navigation
+            className="text-blue-600 font-medium hover:text-blue-800"
+          >
+            Read more &rarr;
+          </Link>
+
+          {/* Like Button */}
+          <button
+            onClick={handleLikeClick} // Handle the like toggle
+            className="flex items-center text-gray-900 transition hover:text-red-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill={isLiked ? "currentColor" : "none"} // Change fill based on like status
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className={`w-6 h-6 ${
+                isLiked ? "text-red-600" : "text-gray-900"
+              }`} // Apply color change based on like status
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+            <span className={`ml-2 ${isLiked ? "text-red-600" : ""}`}>
+              {isLiked ? "Liked" : "Like"}
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default DataFetchingComponent;
+}

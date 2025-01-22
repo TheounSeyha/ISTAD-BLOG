@@ -120,7 +120,7 @@ export default function Nav_bar() {
                   onClick={toggleTechnologyDropdown}
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center gap-2 hover:text-[#FF9067]"
+                      ? " flex items-center gap-2 hover:text-[#FF9067]"
                       : ""
                   }
                 >
