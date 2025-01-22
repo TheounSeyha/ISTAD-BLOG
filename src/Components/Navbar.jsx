@@ -102,7 +102,7 @@ export default function Nav_bar() {
                     </span>
                   </NavLink>
                   {isEducationDropdownOpen && (
-                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-600 rounded shadow-lg dark:bg-slate-800 dark:text-white">
+                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-600 rounded shadow-lg z-50 dark:bg-slate-800 dark:text-white">
                       <li>
                         <NavLink
                           to=""
@@ -168,7 +168,7 @@ export default function Nav_bar() {
                     </span>
                   </NavLink>
                   {isTechnologyDropdownOpen && (
-                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-400 rounded shadow-lg dark:bg-slate-800 dark:text-white">
+                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-400 rounded shadow-lg z-50 dark:bg-slate-800 dark:text-white">
                       <li>
                         <NavLink
                           to=""
@@ -233,7 +233,7 @@ export default function Nav_bar() {
                   {isSearchDropdownOpen && ( // Conditional rendering for the dropdown
                     <div
                       id="search-dropdown"
-                      className="absolute right-0 mt-2 w-64 bg-white p-4 border border-gray-200 rounded shadow-lg"
+                      className="absolute right-0 mt-2 w-64 bg-white p-4 border border-gray-200 rounded shadow-lg z-50"
                     >
                       <input
                         type="text"
@@ -379,7 +379,7 @@ export default function Nav_bar() {
                     </span>
                   </button>
                   {isTechnologyDropdownOpen && (
-                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-200 rounded shadow-lg z-50 dark:bg-slate-800 dark:text-white">
+                    <ul className="absolute left-0 mt-2 w-48 p-2 bg-white border border-gray-200 rounded shadow-lg z-100 dark:bg-slate-800 dark:text-white">
                       <li>
                         <NavLink
                           to=""

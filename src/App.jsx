@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { BASE_URL } from "./services/api"; // Assuming you have this defined
+import { BASE_URL } from "./services/api";
 
 import CardProduct from "./Components/Card";
 

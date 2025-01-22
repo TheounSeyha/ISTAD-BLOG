@@ -35,7 +35,10 @@ export default function DetailedCardProduct() {
       {/* Blog Author and Date */}
       <div className="flex items-center mt-4">
         <img
-          src={blog.author?.profileImage || "/image/user.png"}
+          src={
+            blog.author?.profileImage ||
+            "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=360"
+          }
           alt={blog.author?.username || "Author"}
           className="w-10 h-10 rounded-full mr-4"
         />
@@ -63,7 +66,8 @@ export default function DetailedCardProduct() {
 
       {/* Blog Content */}
       <div className="mt-8 text-lg text-gray-700 leading-relaxed font-bold">
-        <p>{blog.title}</p>
+        <p className="text-4xl text-black">{blog.title}</p>
+        <p>{blog.content}</p>
       </div>
 
       {/* Categories */}
