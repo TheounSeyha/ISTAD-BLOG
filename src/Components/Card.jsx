@@ -40,7 +40,8 @@ export default function CardProduct({
             className="w-8 h-8 rounded-full mr-4"
           />
           <span className="text-sm font-semibold text-gray-800">
-            {author || "Unknown Author"}
+            {author ||
+              "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=360"}
           </span>
         </div>
 
