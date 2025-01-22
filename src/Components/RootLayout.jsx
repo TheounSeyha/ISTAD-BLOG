@@ -10,6 +10,7 @@ export default function RootLayout() {
     location.pathname === '/account' ||
     location.pathname === '/register' ||
     location.pathname === '/login';
+    location.pathname === '/productform';
 
   return (
     <>

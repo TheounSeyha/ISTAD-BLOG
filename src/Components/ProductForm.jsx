@@ -36,12 +36,12 @@ const Post = () => {
       // Replace with your server's file upload endpoint
       fetch(`${import.meta.env.VITE_BASE_URL}/upload`, {
         method: "POST",
-        body: formData,
+        body: uploadImage,
       })
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            setThumbnail(data.file.url); // Use the URL returned from the server
+            setThumbnail(data.files.url); // Use the URL returned from the server
           } else {
             alert("Failed to upload thumbnail");
           }

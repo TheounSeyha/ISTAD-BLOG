@@ -10,6 +10,7 @@ import LoginForm from "./pages/Login.jsx";
 import RegisterForm from "./pages/RegisterForm.jsx";
 import CardProduct from "./Components/Card.jsx"; 
 import DetailedCardProduct from "./pages/PageDetail.jsx"; 
+import Post from "./Components/ProductForm.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/blog" element={<CardProduct />} />
           {/* This is for showing detailed view of a single blog post */}
           <Route path="/blog/:id" element={<DetailedCardProduct />} />,
+          <Route path="/productform" element={<Post />} />
         </Route>
     1  </Routes>
     </BrowserRouter>
