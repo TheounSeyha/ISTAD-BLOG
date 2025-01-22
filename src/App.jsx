@@ -35,7 +35,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen text-gray-600 text-lg">
+      <div className="flex items-center justify-center h-screen text-gray-600 text-lg dark:bg-gray-600 dark:text-white">
         Loading...
       </div>
     );
@@ -51,7 +51,7 @@ function App() {
 
   return (
     
-    <section className="bg-gray-50 py-6">
+    <section className="bg-gray-50 py-6 dark:bg-gray-500">
       {/* Grid layout for product cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto mr-10 ml-10">
         {products.map((data) => (

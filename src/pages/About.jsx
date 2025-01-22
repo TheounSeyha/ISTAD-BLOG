@@ -2,9 +2,9 @@ import React from "react";
 
 export default function About() {
   return (
-    <>
-      <main className="mx-10 lg:mx-[100px] mt-10">
-        <section className="lg:grid grid-cols-2 bg-[#1a6aff] rounded-2xl p-6 text-white my-8">
+    <div className=" dark:bg-gray-600">
+      <main className="mx-10 lg:mx-[100px] py-10">
+        <section className="lg:grid grid-cols-2 bg-[#1a6aff] rounded-2xl p-6 text-white my-8 dark:bg-blue-700">
           <div className="content-center space-y-4">
             <h2 className="text-2xl lg:text-[32px]">
               Education and Technology Blog
@@ -24,7 +24,7 @@ export default function About() {
             className="w-full h-full"
           />
         </section>
-        <h2 className="text-2xl lg:text-[32px] text-center">Join Us</h2>
+        <h2 className="text-2xl lg:text-[32px] text-center dark:text-white">Join Us</h2>
         <section className="block md:flex mb-10 mt-5">
           <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="lg:grid grid-cols-2 bg-[#FF5983] text-white rounded-2xl p-6">
@@ -58,7 +58,7 @@ export default function About() {
             </div>
           </div>
         </section>
-        <h2 className="text-2xl lg:text-[32px] text-center">How?</h2>
+        <h2 className="text-2xl lg:text-[32px] text-center dark:text-white">How?</h2>
         <section className="md:grid grid-cols-2 gap-[100px] bg-[#ff7f50] rounded-2xl py-6 px-6 text-white list-none mb-10 mt-5 lg:px-14">
           <img
             src="./aboutpage/person-working-online.png"
@@ -178,8 +178,8 @@ export default function About() {
             </div>
           </div>
         </section>
-        <h2 className="text-2xl lg:text-[32px] text-center">Team</h2>
-        <p className="text-center text-[#383838]">
+        <h2 className="text-2xl lg:text-[32px] text-center dark:text-white">Team</h2>
+        <p className="text-center text-[#383838] dark:text-gray-200">
           This project could not be done if there's no our members.
         </p>
         <section className="mx-auto mb-10 mt-5">
@@ -192,7 +192,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">Heng Liza</h3>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">So Bothy</h3>
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Pech Panha
                 </h3>
@@ -233,7 +233,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Him Sophearith
                 </h3>
@@ -248,7 +248,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Theoun Seyha
                 </h3>
@@ -263,7 +263,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Thoeurn Sokkay
                 </h3>
@@ -278,7 +278,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Soeng Yanut
                 </h3>
@@ -293,7 +293,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="h-1/5 p-2 flex justify-center items-center">
+              <div className="h-1/5 p-2 flex justify-center items-center dark:bg-gray-400 dark:text-white">
                 <h3 className="text-center text-lg font-semibold">
                   Chhon Sohoung
                 </h3>
@@ -301,8 +301,8 @@ export default function About() {
             </div>
           </div>
         </section>
-        <h2 className="text-2xl lg:text-[32px] text-center">Mentors</h2>
-        <p className="text-center text-[#383838]">Guidance of our project.</p>
+        <h2 className="text-2xl lg:text-[32px] text-center dark:text-white">Mentors</h2>
+        <p className="text-center text-[#383838] dark:text-gray-300">Guidance of our project.</p>
         <section className="block space-y-6 lg:space-y-0 lg:flex gap-8 mb-10 mt-5">
           <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
             <img
@@ -311,15 +311,15 @@ export default function About() {
               className="w-full md:w-2/4 object-cover"
             />
 
-            <div className="md:w-2/4 space-y-4 p-6 flex flex-col justify-center">
-              <h2 className="text-2xl font-bold text-gray-800">
+            <div className="md:w-2/4 space-y-4 p-6 flex flex-col justify-center dark:bg-gray-400">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
                 T.Chan Chhaya
               </h2>
-              <p className="text-gray-600 mt-2">Help with:</p>
-              <span className="bg-gray-200 text-gray-700 text-center text-sm px-4 py-2 rounded-full inline-block mt-2">
+              <p className="text-gray-600 mt-2 dark:text-gray-200">Help with:</p>
+              <span className="bg-gray-200 text-gray-700 text-center text-sm px-4 py-2 rounded-full inline-block mt-2 dark:bg-gray-700 dark:text-white">
                 UX/UI Design
               </span>
-              <hr className="border border-gray-400" />
+              <hr className="border border-gray-400 dark:border-gray-100" />
               <div className="mt-4 flex justify-center space-x-4">
                 <a href="#" className="text-gray-600 hover:text-gray-900">
                   <i className="fab fa-twitter"></i>
@@ -344,13 +344,13 @@ export default function About() {
               className="w-full md:w-2/4 object-cover"
             />
 
-            <div className="md:w-2/4 space-y-4 p-6 flex flex-col justify-center">
-              <h2 className="text-2xl font-bold text-gray-800">T.Kay Keo</h2>
-              <p className="text-gray-600 mt-2">Help with:</p>
-              <span className="bg-gray-200 text-gray-700 text-center text-sm px-4 py-2 rounded-full inline-block mt-2">
+            <div className="md:w-2/4 space-y-4 p-6 flex flex-col justify-center dark:bg-gray-400">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">T.Kay Keo</h2>
+              <p className="text-gray-600 mt-2 dark:text-gray-200">Help with:</p>
+              <span className="bg-gray-200 text-gray-700 text-center text-sm px-4 py-2 rounded-full inline-block mt-2 dark:bg-gray-700 dark:text-white">
                 Backend
               </span>
-              <hr className="border border-gray-400" />
+              <hr className="border border-gray-400 dark:border-gray-300" />
               <div className="mt-4 flex justify-center space-x-4">
                 <a href="#" className="text-gray-600 hover:text-gray-900">
                   <i className="fab fa-twitter"></i>
@@ -368,8 +368,8 @@ export default function About() {
             </div>
           </div>
         </section>
-        <h2 className="text-2xl lg:text-[32px] text-center">Organized By</h2>
-        <section className="bg-[#F0F0F0] p-6 space-y-4 rounded-lg shadow-lg mb-[50px] mt-5">
+        <h2 className="text-2xl lg:text-[32px] text-center dark:text-white">Organized By</h2>
+        <section className="bg-[#F0F0F0] p-6 space-y-4 rounded-lg shadow-lg mb-[50px] mt-5 dark:bg-gray-400">
           <div className="flex justify-center">
             <img
               src="./aboutpage/Istad.png"
@@ -377,10 +377,10 @@ export default function About() {
               className="w-40 h-40"
             />
           </div>
-          <h3 className="text-xl lg:text-2xl text-center">
+          <h3 className="text-xl lg:text-2xl text-center dark:text-white">
             Institute of Scient and Technology Advanced Development
           </h3>
-          <p className="text-sm lg:text-base text-justify text-[#383838]">
+          <p className="text-sm lg:text-base text-justify text-[#383838] dark:text-gray-200">
             ISTAD is a noteworthy science and technology Institute in Cambodia.
             INSTITUTE has routed Cambodian students to advanced science and
             technology, research, and develop digital skills and our graduates
@@ -389,8 +389,8 @@ export default function About() {
             with the latest methodology, and roadmap as well as the best choice
             for those who want to be an IT expert in Cambodia.
           </p>
-          <hr className="border border-gray-400" />
-          <div className="flex justify-center gap-4 text-[#383838]">
+          <hr className="border border-gray-400 dark:border-white" />
+          <div className="flex justify-center gap-4 text-[#383838] dark:text-white">
             <div className="flex items-center gap-2">
               <i className="fa-brands fa-twitter"></i>{" "}
               <p className="hidden md:block">Twitter</p>
@@ -406,6 +406,6 @@ export default function About() {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 }

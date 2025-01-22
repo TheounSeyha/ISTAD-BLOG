@@ -22,13 +22,13 @@ export default function DetailedCardProduct() {
 
   if (!blog)
     return (
-      <div className="flex justify-center items-center h-screen text-gray-600">
+      <div className="flex justify-center items-center h-screen text-gray-600 dark:bg-gray-600 dark:Text-white">
         Loading...
       </div>
     ); // Show loading while fetching data
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl my-8">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl my-8 dark:bg-gray-700 dark:shadow-gray-600 dark:hover:shadow-gray-700">
       {/* Blog Title */}
       <h1 className="text-3xl font-extrabold text-gray-900">{}</h1>
 
@@ -43,10 +43,10 @@ export default function DetailedCardProduct() {
           className="w-10 h-10 rounded-full mr-4"
         />
         <div>
-          <p className="text-lg font-medium text-gray-800">
+          <p className="text-lg font-medium text-gray-800 dark:text-gray-300">
             {blog.author?.username || "Unknown Author"}
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {new Date(blog.createdAt).toLocaleDateString()}
           </p>
         </div>
@@ -66,8 +66,8 @@ export default function DetailedCardProduct() {
 
       {/* Blog Content */}
       <div className="mt-8 text-lg text-gray-700 leading-relaxed font-bold">
-        <p className="text-4xl text-black">{blog.title}</p>
-        <p>{blog.content}</p>
+        <p className="text-4xl text-black dark:text-white">{blog.title}</p>
+        <p className="dark:text-gray-300">{blog.content}</p>
       </div>
 
       {/* Categories */}
@@ -75,7 +75,7 @@ export default function DetailedCardProduct() {
         {blog.categories?.map((category) => (
           <span
             key={category.name}
-            className="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold"
+            className="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold dark:bg-blue-800 dark:text-blue-200"
           >
             #{category.name}
           </span>
@@ -86,7 +86,7 @@ export default function DetailedCardProduct() {
       <div className="mt-8">
         <a
           href="/"
-          className="inline-block text-blue-600 hover:text-blue-800 font-medium text-lg"
+          className="inline-block text-blue-600 hover:text-blue-800 font-medium text-lg dark:text-blue-300 dark:hover:text-blue-500"
         >
           &larr; Back to all blogs
         </a>

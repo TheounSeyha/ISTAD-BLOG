@@ -19,7 +19,7 @@ export default function CardProduct({
   };
 
   return (
-    <div className="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow dark:shadow-gray-700 duration-300">
       {/* Blog Image */}
       <img
         src={
@@ -31,7 +31,7 @@ export default function CardProduct({
       />
 
       {/* Content Section */}
-      <div className="relative border border-gray-100 bg-white p-6">
+      <div className="relative border border-gray-100 bg-white p-6 dark:bg-gray-600 dark:border-gray-600 h-full">
         {/* Author and Profile */}
         <div className="flex items-center mb-4">
           <img
@@ -39,28 +39,28 @@ export default function CardProduct({
             alt={author || "Author"}
             className="w-8 h-8 rounded-full mr-4"
           />
-          <span className="text-sm font-semibold text-gray-800">
+          <span className="text-sm font-semibold text-gray-800 dark:text-gray-300">
             {author ||
               "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=360"}
           </span>
         </div>
 
         {/* Blog Title */}
-        <h3 className="mt-1.5 text-lg font-medium text-gray-900 line-clamp-1">
+        <h3 className="mt-1.5 text-lg font-medium text-gray-900 line-clamp-1 dark:text-white">
           {title || "Default Blog Title"}
         </h3>
 
         {/* Blog Description */}
-        <p className="mt-1.5 line-clamp-3 text-gray-700">
+        <p className="mt-1.5 line-clamp-3 text-gray-700 dark:text-gray-300">
           {content || "Default blog content description"}
         </p>
 
         {/* Categories Section */}
-        <div className="flex flex-wrap gap-2 text-sm text-blue-500 mb-4">
+        <div className="flex flex-wrap gap-2 text-sm mt-2 text-blue-500 mb-4">
           {categories?.map((category) => (
             <span
               key={category.name}
-              className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded-full"
+              className="inline-block bg-blue-100 text-blue-600 dark:text-blue-900 px-2 py-1 dark:bg-blue-400 rounded-full"
             >
               #{category.name}
             </span>
@@ -68,11 +68,11 @@ export default function CardProduct({
         </div>
 
         {/* Footer with "Read More" and "Like" button */}
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-4 ">
           {/* Read More Button */}
           <Link
             to={`/blog/${id}`} // Use Link for navigation
-            className="text-blue-600 font-medium hover:text-blue-800"
+            className="text-blue-600 font-medium hover:text-blue-800 dark:text-blue-300"
           >
             Read more &rarr;
           </Link>
@@ -80,7 +80,7 @@ export default function CardProduct({
           {/* Like Button */}
           <button
             onClick={handleLikeClick} // Handle the like toggle
-            className="flex items-center text-gray-900 transition hover:text-red-600"
+            className="flex items-center text-gray-900 dark:text-gray-100  transition hover:text-red-600 dark:hover:text-red-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export default function CardProduct({
               viewBox="0 0 24 24"
               stroke="currentColor"
               className={`w-6 h-6 ${
-                isLiked ? "text-red-600" : "text-gray-900"
+                isLiked ? "text-red-600" : "text-gray-500"
               }`} // Apply color change based on like status
             >
               <path
