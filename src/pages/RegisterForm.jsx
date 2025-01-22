@@ -64,16 +64,16 @@ const RegisterForm = () => {
         }
       );
 
-      if (!response.ok) {
+      if (!response) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Registration failed");
       }
 
       const result = await response.json();
       console.log("Registration successful:", result);
-
+      
       // Redirect to home page on success
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("Error during registration:", error);
       setError(error.message);
@@ -87,7 +87,7 @@ const RegisterForm = () => {
     <div className="min-h-screen w-full px-16 dark:bg-slate-800 dark:text-white">
       <div className="block md:flex items-center justify-center dark:bg-slate-800 dark:text-white min-h-screen">
         <img className="md:w-2/5 self-center" src="./loginpage/image.png" alt="" />
-        <form className="md:w-2/4 px-12 self-center py-8" onSubmit={handleSubmit}>
+        <form className="md:w-2/4 px-12 self-center py-8" >
           {error && <div className="mb-5 text-red-500 text-sm">{error}</div>}
           <h3 className="text-2xl text-center mb-2 font-semibold">Register</h3>
           <p className="my-4 font-medium">Please fill out your information.</p>

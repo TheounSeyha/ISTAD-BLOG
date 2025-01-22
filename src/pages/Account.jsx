@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import PostCard from "../Components/Postcard/Postcard";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Account() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -12,6 +13,7 @@ function Account() {
   const [token, setToken] = useState(null);
 
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -56,34 +58,37 @@ function Account() {
       try {
         setLoading(true);
         // First, get the token from localStorage
-        const storedToken = localStorage.getItem('authToken');
-        console.log('Stored token:', storedToken);
-        
+        const storedToken = localStorage.getItem("authToken");
+        console.log("Stored token:", storedToken);
+
         if (!storedToken) {
-          throw new Error('No authentication token found');
+          throw new Error("No authentication token found");
         }
 
         setToken(storedToken);
 
         // Use the token to fetch the profile
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storedToken}`,
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/users/profile`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${storedToken}`,
+            },
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to fetch profile');
+          throw new Error("Failed to fetch profile");
         }
 
         const data = await response.json();
-        console.log('Profile data:', data);
+        console.log("Profile data:", data);
         setProfile(data);
         setLoading(false);
       } catch (err) {
-        console.error('Error:', err);
+        console.error("Error:", err);
         setError(err.message);
         setLoading(false);
       }
@@ -141,7 +146,11 @@ function Account() {
           <div className="p-4 space-y-4">
             <div className="flex items-center space-x-2">
               <div className="flex justify-center items-center bg-gray-500 rounded-full w-10 h-10">
-                <i className="fa-solid fa-user text-white text-xl"></i>
+                <img
+                  src="https://media.istockphoto.com/id/2151669184/vector/vector-flat-illustration-in-grayscale-avatar-user-profile-person-icon-gender-neutral.jpg?s=612x612&w=0&k=20&c=UEa7oHoOL30ynvmJzSCIPrwwopJdfqzBs0q69ezQoM8="
+                  alt={"User"}
+                  className="w-8 h-8 rounded-full"
+                />
               </div>
               <div className="ml-3">
                 {loading ? (
@@ -150,8 +159,12 @@ function Account() {
                   <p className="text-red-500">Error: {error}</p>
                 ) : profile ? (
                   <>
-                    <h3 className="text-lg font-semibold">{profile.profile.username}</h3>
-                    <p className="text-sm text-gray-500">{profile.profile.email}</p>
+                    <h3 className="text-lg font-semibold">
+                      {profile.profile.username}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {profile.profile.email}
+                    </p>
                   </>
                 ) : (
                   <p>No profile data available</p>
@@ -258,8 +271,11 @@ function Account() {
                 </NavLink>
               </li>
               <button className="block mx-auto">
-                <NavLink
-                  to="#"
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("authToken");
+                    navigate("/");
+                  }}
                   className="flex items-center bg-[#BF9DFF] px-4 py-2 rounded-lg space-x-2 text-white hover:bg-[#FF5983]"
                 >
                   <svg
@@ -273,7 +289,7 @@ function Account() {
                     <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
                   </svg>
                   <span>Log out</span>
-                </NavLink>
+                </button>
               </button>
             </ul>
           </nav>

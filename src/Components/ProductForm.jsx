@@ -1,6 +1,6 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";  // Import React Quill
-import "react-quill/dist/quill.snow.css";  // Import React Quill styles
+import { FileInput, Label, Textarea, Select } from "flowbite-react";
 import { uploadImage } from "../services/imageUpload";
 
 const Post = () => {
@@ -14,7 +14,9 @@ const Post = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/categories`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/categories`
+        );
         const data = await response.json();
         setCategories(data); // Assuming the categories are returned as an array
       } catch (error) {
@@ -26,30 +28,24 @@ const Post = () => {
   }, []);
 
   // Handle file change (for thumbnail upload)
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("file", file);
-      uploadImage(file);
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0]; // Get the first file from input
 
-      // Replace with your server's file upload endpoint
-      fetch(`${import.meta.env.VITE_BASE_URL}/upload`, {
-        method: "POST",
-        body: uploadImage,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            setThumbnail(data.files.url); // Use the URL returned from the server
-          } else {
-            alert("Failed to upload thumbnail");
-          }
-        })
-        .catch((error) => {
-          console.error("Error uploading file:", error);
-          alert("Error uploading file");
-        });
+    if (file) {
+      try {
+        const response = await uploadImage(file); // Pass file, not array of files
+
+        if (response && response.files && response.files.length > 0) {
+          const uploadedFileUrl = response.files[0].url; // Extract URL of uploaded image
+          setThumbnail(uploadedFileUrl); // Update thumbnail state
+          console.log("Image uploaded successfully:", uploadedFileUrl);
+        } else {
+          throw new Error("No files returned from the upload API.");
+        }
+      } catch (error) {
+        console.error("Failed to upload image:", error.message);
+        alert("Image upload failed. Please try again.");
+      }
     }
   };
 
@@ -79,7 +75,7 @@ const Post = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`, // Add Authorization header with token
+          Authorization: `Bearer ${token}`, // Add Authorization header with token
         },
         body: JSON.stringify(postData),
       });
@@ -103,72 +99,75 @@ const Post = () => {
   };
 
   return (
-    <div className="post-form-container">
-      <h2>Create a New Post</h2>
-
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter post title"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="content">Content:</label>
-        <ReactQuill
-          value={content}
-          onChange={setContent} // Update content with React Quill's editor value
-          modules={{
-            toolbar: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["bold", "italic", "underline"],
-              ["link", "image"],
-              [{ align: [] }],
-              ["clean"],
-            ],
-          }}
-          formats={[
-            "header", "font", "list", "bold", "italic", "underline", "link", "image", "align", "clean",
-          ]}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="category">Category:</label>
-        <select
-          id="category"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="" disabled>
-            Select a category
-          </option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
+    <section className="post-form w-[90%] mx-auto mt-10 items-center">
+      <div className="post-form-container gap-5 flex flex-col">
+        <h2 className="text-2xl">Create a New Post</h2>
+        {/* Title */}
+        <div className="max-w-md">
+          <div className="block mb-2">
+            <label htmlFor="title">Title:</label>
+          </div>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter post title"
+            className="rounded-md border-gray-300"
+          />
+        </div>
+        {/* Content */}
+        <div className="max-w-md">
+          <div className="mb-2 block">
+            <Label htmlFor="title" value="Content" />
+          </div>
+          <Textarea
+            id="comment"
+            placeholder="Enter post content"
+            required
+            rows={4}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </div>
+        {/* Category selector */}
+        <div className="max-w-md">
+          <div className="mb-2 block">
+            <Label htmlFor="category" value="Category" />
+          </div>
+          <Select
+            id="category"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Select a category
             </option>
-          ))}
-        </select>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        {/* Blog Thumbnail */}
+        <div className="max-w-md">
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="file-upload" value="Upload file" />
+            </div>
+            <FileInput id="file-upload" onChange={handleFileChange} />
+            {thumbnail && <img src={thumbnail} alt="Thumbnail preview" />}
+          </div>
+        </div>
+        <button
+          onClick={handleSubmit}
+          className="bg-[#FF7F50] w-[100px] h-[40px] text-white rounded-md"
+        >
+          Post Blog
+        </button>
       </div>
-
-      <div>
-        <label htmlFor="thumbnail">Thumbnail:</label>
-        <input
-          type="file"
-          id="thumbnail"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        {thumbnail && <img src={thumbnail} alt="Thumbnail preview" />}
-      </div>
-
-      <button onClick={handleSubmit}>Post Blog</button>
-    </div>
+    </section>
   );
 };
 

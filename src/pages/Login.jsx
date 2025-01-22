@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
+
 const LoginForm = () => {
   const navigate = useNavigate();
   // State to manage form inputs
@@ -42,7 +43,6 @@ const LoginForm = () => {
       if (!response.ok) {
         throw new Error("Login failed");
       }
-
       const result = await response.json();
       console.log("Login successful:", result);
       localStorage.setItem("authToken", result.access_token);

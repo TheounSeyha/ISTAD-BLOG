@@ -60,9 +60,9 @@ function App() {
             title={data.title}
             content={data.content}
             author={data.author?.username}
-            profileImage={data.author?.profileImage}
+            profileImage={data.author?.profileUrl}
             categories={data.categories}
-            tumtail={data.tumtail}
+            thumbnail={data.thumbnail}
             id={data.id}
             date={data.createdAt}
           />

@@ -47,7 +47,7 @@ export default function DetailedCardProduct() {
             {blog.author?.username || "Unknown Author"}
           </p>
           <p className="text-sm text-gray-500">
-            {new Date(blog.createdAt).toLocaleDateString()}
+            {new Date(blog.created_at).toLocaleDateString()}
           </p>
         </div>
       </div>
@@ -56,11 +56,11 @@ export default function DetailedCardProduct() {
       <div className="mt-6">
         <img
           src={
-            blog.tumtail ||
+            blog.thumbnail ||
             "https://images.unsplash.com/photo-1628202926206-c63a34b1618f?q=80&w=2574&auto=format&fit=crop"
           }
           alt={blog.title}
-          className="w-full h-[25rem] object-cover rounded-lg shadow-md"
+          className="w-full h-auto object-cover rounded-lg shadow-md"
         />
       </div>
 
