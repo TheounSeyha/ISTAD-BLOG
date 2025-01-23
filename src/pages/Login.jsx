@@ -55,7 +55,7 @@ const LoginForm = () => {
     }
   };
   return (
-    <div className="min-h-screen dark:bg-slate-800 dark:text-white">
+    <div className="min-h-screen bg-[#F7F8F9] dark:bg-slate-800 dark:text-white">
       <div className="block md:flex items-center justify-center dark:bg-slate-800 dark:text-white min-h-screen">
         <img
           className="md:w-2/5 self-center"

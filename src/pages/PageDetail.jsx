@@ -30,13 +30,8 @@ export default function DetailedCardProduct() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-5">
       <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-xl">
-        {/* Blog Title */}
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100">
-          {blog.title}
-        </h1>
-
         {/* Blog Author and Date */}
-        <div className="flex items-center mt-4">
+        <div className="flex items-center my-2">
           <img
             src={
               blog.author?.profileImage ||
@@ -54,7 +49,10 @@ export default function DetailedCardProduct() {
             </p>
           </div>
         </div>
-
+            {/* Blog Title */}
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+          {blog.title}
+        </h2>
         {/* Blog Image */}
         <div className="mt-6">
           <img
