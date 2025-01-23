@@ -48,9 +48,37 @@ export default function Nav_bar() {
 
   // Simulating fetching user details (this can be replaced with actual API call or context)
   useEffect(() => {
-    // Check if the user is logged in (use actual logic for authentication)
-    const loggedInUser = localStorage.getItem("authToken"); // Example of getting user from local storage
-    setUser(loggedInUser);
+    // Check if the user is logged in
+    const loggedInUser = localStorage.getItem("authToken");
+
+    if (loggedInUser) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_BASE_URL}/users/profile`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${loggedInUser}`
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch user profile");
+          }
+
+          const profileUserDetail = await response.json();
+          setUser(profileUserDetail);
+        } catch (error) {
+          console.error("Error fetching user profile:", error);
+        }
+      };
+
+      fetchUserDetails();
+    } else {
+      setUser(null); // No logged-in user
+    }
   }, []);
 
   useEffect(() => {
@@ -294,14 +322,14 @@ export default function Nav_bar() {
                       >
                         <img
                           src={
-                            user.profileUrl ||
+                            user.profile.profileUrl ||
                             "https://media.istockphoto.com/id/2151669184/vector/vector-flat-illustration-in-grayscale-avatar-user-profile-person-icon-gender-neutral.jpg?s=612x612&w=0&k=20&c=UEa7oHoOL30ynvmJzSCIPrwwopJdfqzBs0q69ezQoM8="
                           }
-                          alt={user.username || "User"}
+                          alt={user.profile.username || "User"}
                           className="w-8 h-8 rounded-full"
                         />
-                        <span className="text-sm font-semibold text-gray-800">
-                          {user.username}
+                        <span className="text-sm font-semibold text-gray-800 dark:text-white">
+                          {user.profile.username}
                         </span>
                       </div>
 
@@ -516,7 +544,7 @@ export default function Nav_bar() {
                     Search
                   </button>
                 </li>
-                
+
                 <li className="relative" ref={dropdownRef}>
                   {user ? (
                     <div className="relative flex items-center gap-2">
@@ -527,20 +555,20 @@ export default function Nav_bar() {
                       >
                         <img
                           src={
-                            user.profileUrl ||
+                            user.profile.profileUrl ||
                             "https://media.istockphoto.com/id/2151669184/vector/vector-flat-illustration-in-grayscale-avatar-user-profile-person-icon-gender-neutral.jpg?s=612x612&w=0&k=20&c=UEa7oHoOL30ynvmJzSCIPrwwopJdfqzBs0q69ezQoM8="
                           }
-                          alt={user.username || "User"}
+                          alt={user.profile.username || "User"}
                           className="w-8 h-8 rounded-full"
                         />
-                        <span className="text-sm font-semibold text-white">
-                          {user.username}
+                        <span className="text-sm font-semibold text-gray-800">
+                          {user.profile.username}
                         </span>
                       </div>
 
                       {/* Dropdown */}
                       {dropdownOpen && (
-                        <div className="absolute left0 top-10 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                        <div className="absolute right-0 top-10 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                           <button
                             onClick={() => {
                               localStorage.removeItem("authToken");
