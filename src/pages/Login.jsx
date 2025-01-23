@@ -48,10 +48,8 @@ const LoginForm = () => {
       localStorage.setItem("authToken", result.access_token);
       navigate("/account");
 
-      // Handle successful login (e.g., redirect or store token)
     } catch (error) {
       console.error("Error during login:", error);
-      // Handle error (e.g., show error message to the user)
     }
   };
   return (

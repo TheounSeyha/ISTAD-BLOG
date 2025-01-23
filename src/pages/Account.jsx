@@ -87,6 +87,13 @@ function Account() {
         console.log("Profile data:", data);
         setProfile(data);
         setLoading(false);
+        const profileId = data.profile?.id;
+        if (profileId) {
+          localStorage.setItem("userId", profileId);
+          console.log("User ID stored in localStorage:", profileId);
+        } else {
+          console.error("userId not found in response data");
+        }
       } catch (err) {
         console.error("Error:", err);
         setError(err.message);
@@ -374,7 +381,7 @@ function Account() {
 
           {/* Post Card */}
           <div>
-            <PostCard />
+            <PostCard/>
           </div>
         </div>
       </div>
