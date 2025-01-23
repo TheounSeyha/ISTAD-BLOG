@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { BASE_URL } from "./services/api";
-
+import "./App.css";
 import CardProduct from "./Components/Card";
 
 function App() {

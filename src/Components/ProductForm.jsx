@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FileInput, Label, Textarea, Select } from "flowbite-react";
 import { uploadImage } from "../services/imageUpload";
+import { useNavigate } from "react-router";
 
 const Post = () => {
   const [title, setTitle] = useState("");
@@ -49,6 +50,8 @@ const Post = () => {
     }
   };
 
+const navigator = useNavigate();
+
   // Handle form submission
   const handleSubmit = async () => {
     if (!title || !content || !selectedCategory || !thumbnail) {
@@ -84,6 +87,7 @@ const Post = () => {
         const result = await response.json();
         console.log("Blog posted successfully:", result);
         alert("Blog posted successfully!");
+        navigator("/")
         setTitle("");
         setContent("");
         setSelectedCategory("");

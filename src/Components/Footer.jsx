@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <>
-      <section className="w-full dark:bg-gray-900 dark:text-gray-200 block px-10 border border-gray-300 dark:border-gray-700 shadow-2xl lg:px-[100px]">
+      <section className="w-full bg-white dark:bg-gray-900 dark:text-gray-200 block px-10 border border-gray-300 dark:border-gray-700 shadow-2xl lg:px-[100px]">
         <div className="flex items-center justify-center gap-4 py-4">
           <img
             src="/Logo/Post-Pen-Logo.png"
