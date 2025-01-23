@@ -96,7 +96,7 @@ export default function Nav_bar() {
 
   return (
     <>
-      <section className="w-full bg-white py-4 px-12 shadow-md dark:bg-slate-800 dark:text-white">
+      <section className="w-full bg-white py-4 px-12 shadow-md dark:bg-slate-800 dark:text-white sticky top-0 z-[1000]">
         <div className="grid grid-cols-2 lg:flex items-center justify-between">
           <div className="flex items-center space-x-2 lg:w-1/6">
             <NavLink to="/" className="flex items-center space-x-2">

@@ -50,10 +50,9 @@ function App() {
   }
 
   return (
-    
-    <section className="bg-gray-50 py-6">
+    <section className="bg-gray-50 dark:bg-gray-900 py-6">
       {/* Grid layout for product cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto mr-10 ml-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-10 mx-auto">
         {products.map((data) => (
           <CardProduct
             key={data.id}
