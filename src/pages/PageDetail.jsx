@@ -28,8 +28,8 @@ export default function DetailedCardProduct() {
     ); // Show loading while fetching data
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-xl ">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-5">
+      <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-xl">
         {/* Blog Title */}
         <h1 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100">
           {blog.title}
