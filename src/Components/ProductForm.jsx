@@ -87,7 +87,7 @@ const navigator = useNavigate();
         const result = await response.json();
         console.log("Blog posted successfully:", result);
         alert("Blog posted successfully!");
-        navigator("/")
+        navigator("/account")
         setTitle("");
         setContent("");
         setSelectedCategory("");

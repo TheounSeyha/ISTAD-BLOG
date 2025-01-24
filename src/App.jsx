@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/blogs`);
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/blogs`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

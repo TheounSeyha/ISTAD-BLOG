@@ -107,7 +107,7 @@ function Account() {
   // Rest of your component remains the same
   return (
     <>
-      <div className="bg-white shadow-md p-4 flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-600 dark:text-white shadow-md p-4 flex items-center justify-between">
         <div className="flex items-center">
           <button
             onClick={toggleSidebar}
